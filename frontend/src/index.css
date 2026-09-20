@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Manrope', sans-serif;
+  --font-heading: 'Syne', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --color-background: var(--bg);
+  --color-foreground: var(--fg);
+  --color-accent: var(--accent);
+}
+
+@layer base {
+  :root {
+    /* Theme: India/Cinematic (Primary) */
+    --bg: #090a0f;
+    --fg: #fafafa;
+    --accent: #ff4a5a;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --card-border: rgba(255, 255, 255, 0.1);
+  }
+
+  [data-theme='night'] {
+    /* Theme: Night */
+    --bg: #030712;
+    --fg: #f9fafb;
+    --accent: #3b82f6;
+    --card-bg: rgba(255, 255, 255, 0.02);
+    --card-border: rgba(255, 255, 255, 0.05);
+  }
+
+  [data-theme='terminal'] {
+    /* Theme: Terminal */
+    --bg: #000000;
+    --fg: #22c55e;
+    --accent: #22c55e;
+    --card-bg: rgba(34, 197, 94, 0.05);
+    --card-border: rgba(34, 197, 94, 0.2);
+  }
+}
+
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+
+  code, pre, .font-mono {
+    font-family: var(--font-mono);
+  }
+}
+
+/* Noise Overlay */
+.noise-overlay {
+  position: fixed;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  z-index: 9999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  animation: noise 8s steps(10) infinite;
+}
+
+@keyframes noise {
+  0% { transform: translate3d(0, 0, 0); }
+  10% { transform: translate3d(-5%, -5%, 0); }
+  20% { transform: translate3d(-10%, 5%, 0); }
+  30% { transform: translate3d(5%, -10%, 0); }
+  40% { transform: translate3d(-5%, 15%, 0); }
+  50% { transform: translate3d(-10%, 5%, 0); }
+  60% { transform: translate3d(15%, 0, 0); }
+  70% { transform: translate3d(0, 15%, 0); }
+  80% { transform: translate3d(3%, 35%, 0); }
+  90% { transform: translate3d(-10%, 10%, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+/* Lenis recommended styles */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}

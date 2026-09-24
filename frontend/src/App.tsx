@@ -28,7 +28,7 @@ export interface ScanResult {
 
 function App() {
   const [scanResult, setScanResult] = useState<ScanResult | null>(null)
-  const { t, theme, setTheme } = useApp()
+  const { lang, setLang, theme, setTheme } = useApp()
 
   const toggleTheme = () => {
     if (theme === 'india') setTheme('night');

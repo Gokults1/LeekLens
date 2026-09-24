@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import type { ScanResult } from '../../App';
@@ -64,7 +64,7 @@ export function Hero({ onScanComplete }: HeroProps) {
   const [email, setEmail] = useState('');
   const [scanStatus, setScanStatus] = useState<'idle' | 'scanning' | 'safe' | 'breached'>('idle');
   const [error, setError] = useState('');
-  const { t, lang, setLang } = useApp();
+  const { t } = useApp();
 
   // Scroll animations
   const { scrollY } = useScroll();
@@ -106,7 +106,7 @@ export function Hero({ onScanComplete }: HeroProps) {
       
       const data: ScanResult = await response.json();
       
-      const isBreached = (data.Breaches && data.Breaches.length > 0) || (data.Pastes && data.Pastes.length > 0);
+      const isBreached = data.breach_count > 0 || data.found === true;
       
       if (isBreached) {
         setScanStatus('breached');

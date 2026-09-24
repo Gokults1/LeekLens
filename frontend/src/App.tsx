@@ -49,15 +49,13 @@ function App() {
           </div>
         </div>
 
-        {/* Links */}
-        <div className="hidden md:flex items-center gap-12 text-[10px] font-mono uppercase tracking-[0.2em] text-white/70">
-          <a href="#" className="hover:text-white transition-colors">{t.nav_how_it_works}</a>
-          <a href="#" className="hover:text-white transition-colors">{t.nav_security}</a>
-          <a href="#" className="hover:text-white transition-colors" onClick={(e) => { e.preventDefault(); document.getElementById('bottom-scanner')?.scrollIntoView({ behavior: 'smooth' }) }}>{t.nav_scan_now}</a>
-        </div>
-
-        {/* CTA & Theme */}
+        {/* Language & Theme Controls */}
         <div className="flex items-center gap-6">
+          <div className="flex gap-4 mr-4">
+            <button onClick={() => setLang('en')} className={`text-xs font-mono tracking-widest ${theme === 'india' || theme === 'night' ? 'text-white' : 'text-black'} ${lang === 'en' ? 'opacity-100 font-bold' : 'opacity-40 hover:opacity-80'}`}>EN</button>
+            <button onClick={() => setLang('ta')} className={`text-xs font-sans tracking-widest ${theme === 'india' || theme === 'night' ? 'text-white' : 'text-black'} ${lang === 'ta' ? 'opacity-100 font-bold' : 'opacity-40 hover:opacity-80'}`}>தமிழ்</button>
+            <button onClick={() => setLang('hi')} className={`text-xs font-sans tracking-widest ${theme === 'india' || theme === 'night' ? 'text-white' : 'text-black'} ${lang === 'hi' ? 'opacity-100 font-bold' : 'opacity-40 hover:opacity-80'}`}>हिन्दी</button>
+          </div>
           <button onClick={toggleTheme} className="text-xs hover:opacity-80 transition-opacity">
             {theme === 'india' ? '🇮🇳' : theme === 'night' ? '🌙' : '💻'}
           </button>
